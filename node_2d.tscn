@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=3 uid="uid://box4f01mrigkh"]
+
+[ext_resource type="PackedScene" uid="uid://baqki7cd8vjrk" path="res://flappy.tscn" id="1_tnfrs"]
+[ext_resource type="Script" path="res://flappy.gd" id="2_up3wp"]
+[ext_resource type="Texture2D" uid="uid://dfw1wxegiexis" path="res://images/pixil-frame-0 (13).png" id="2_xbeia"]
+[ext_resource type="Texture2D" uid="uid://gnvrnu2dt3fx" path="res://images/pixil-frame-0 (11).png" id="3_mlx8h"]
+[ext_resource type="Script" path="res://pipe_1_top_area_2d.gd" id="5_b8f26"]
+[ext_resource type="Script" path="res://pipe_1.gd" id="5_m65el"]
+[ext_resource type="Script" path="res://pipe_spawner.gd" id="5_xepdq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mdbai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuiuq"]
+size = Vector2(20, 30.737)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_28iq7"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(21, 18)
+
+[node name="Flappy" parent="." groups=["Player"] instance=ExtResource("1_tnfrs")]
+position = Vector2(189.813, 335.531)
+scale = Vector2(0.611843, 0.755207)
+texture = ExtResource("2_xbeia")
+script = ExtResource("2_up3wp")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576.625, 323.375)
+scale = Vector2(1148.75, 645.25)
+texture = SubResource("PlaceholderTexture2D_mdbai")
+
+[node name="PipeSpawner" type="Node2D" parent="."]
+script = ExtResource("5_xepdq")
+
+[node name="Pipe1" type="Node2D" parent="PipeSpawner"]
+script = ExtResource("5_m65el")
+
+[node name="Area2D2" type="Area2D" parent="PipeSpawner/Pipe1"]
+position = Vector2(1, 12)
+
+[node name="pipe1_bottom" type="Sprite2D" parent="PipeSpawner/Pipe1/Area2D2"]
+position = Vector2(360, 393.25)
+scale = Vector2(1, 2.76563)
+texture = ExtResource("3_mlx8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeSpawner/Pipe1/Area2D2"]
+position = Vector2(360, 392)
+scale = Vector2(1, 2.76563)
+shape = SubResource("RectangleShape2D_nuiuq")
+
+[node name="Area2D" type="Area2D" parent="PipeSpawner/Pipe1"]
+position = Vector2(360, 272)
+rotation = -3.14159
+scale = Vector2(1, 2.41581)
+script = ExtResource("5_b8f26")
+
+[node name="pipe1_top" type="Sprite2D" parent="PipeSpawner/Pipe1/Area2D"]
+texture = ExtResource("3_mlx8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeSpawner/Pipe1/Area2D"]
+position = Vector2(4.73913e-07, -0.413938)
+shape = SubResource("RectangleShape2D_nuiuq")
+
+[node name="Pipe2" type="Node2D" parent="PipeSpawner"]
+position = Vector2(115, 25)
+
+[node name="pipe1_top" type="Sprite2D" parent="PipeSpawner/Pipe2"]
+position = Vector2(360, 273)
+rotation = 3.14159
+scale = Vector2(1, 2.41581)
+texture = ExtResource("3_mlx8h")
+
+[node name="pipe1_bottom" type="Sprite2D" parent="PipeSpawner/Pipe2"]
+position = Vector2(360, 395.25)
+scale = Vector2(1, 2.76563)
+texture = ExtResource("3_mlx8h")
+
+[node name="Pipe3" type="Node2D" parent="PipeSpawner"]
+position = Vector2(228, -21)
+
+[node name="pipe1_top" type="Sprite2D" parent="PipeSpawner/Pipe3"]
+position = Vector2(360, 273)
+rotation = 3.14159
+scale = Vector2(1, 2.41581)
+texture = ExtResource("3_mlx8h")
+
+[node name="pipe1_bottom" type="Sprite2D" parent="PipeSpawner/Pipe3"]
+position = Vector2(360, 395.25)
+scale = Vector2(1, 2.76563)
+texture = ExtResource("3_mlx8h")
+
+[node name="Pipe4" type="Node2D" parent="PipeSpawner"]
+position = Vector2(323, 32)
+
+[node name="pipe1_top" type="Sprite2D" parent="PipeSpawner/Pipe4"]
+position = Vector2(360, 273)
+rotation = 3.14159
+scale = Vector2(1, 2.41581)
+texture = ExtResource("3_mlx8h")
+
+[node name="pipe1_bottom" type="Sprite2D" parent="PipeSpawner/Pipe4"]
+position = Vector2(360, 395.25)
+scale = Vector2(1, 2.76563)
+texture = ExtResource("3_mlx8h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(268, 332)
+zoom = Vector2(5, 5)
+
+[node name="ground" type="Sprite2D" parent="."]
+position = Vector2(266.736, 395)
+scale = Vector2(232.529, 6)
+texture = SubResource("PlaceholderTexture2D_28iq7")
+
+[connection signal="body_entered" from="PipeSpawner/Pipe1/Area2D" to="PipeSpawner/Pipe1/Area2D" method="_on_body_entered"]

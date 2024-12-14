@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://baqki7cd8vjrk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hs3sh"]
+
+[node name="Flappy" type="Sprite2D"]
+position = Vector2(236, 332)
+scale = Vector2(16.5, 19.5)
+texture = SubResource("PlaceholderTexture2D_hs3sh")

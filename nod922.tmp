@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://box4f01mrigkh"]
+
+[ext_resource type="PackedScene" uid="uid://baqki7cd8vjrk" path="res://flappy.tscn" id="1_tnfrs"]
+[ext_resource type="Script" path="res://flappy.gd" id="2_up3wp"]
+[ext_resource type="Texture2D" uid="uid://gnvrnu2dt3fx" path="res://images/pixil-frame-0 (11).png" id="3_mlx8h"]
+[ext_resource type="Script" path="res://pipe_spawner.gd" id="5_xepdq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mdbai"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(21, 18)
+
+[node name="Flappy" parent="." instance=ExtResource("1_tnfrs")]
+script = ExtResource("2_up3wp")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576.625, 323.375)
+scale = Vector2(1148.75, 645.25)
+texture = SubResource("PlaceholderTexture2D_mdbai")
+
+[node name="PipeSpawner" type="Node2D" parent="."]
+script = ExtResource("5_xepdq")
+
+[node name="Pipe1" type="Node2D" parent="PipeSpawner"]
+
+[node name="pipe1_top" type="Sprite2D" parent="PipeSpawner/Pipe1"]
+position = Vector2(360, 270)
+rotation = 3.14159
+scale = Vector2(1, 2.41581)
+texture = ExtResource("3_mlx8h")
+
+[node name="pipe1_bottom" type="Sprite2D" parent="PipeSpawner/Pipe1"]
+position = Vector2(360, 388)
+scale = Vector2(1, 3.40625)
+texture = ExtResource("3_mlx8h")
